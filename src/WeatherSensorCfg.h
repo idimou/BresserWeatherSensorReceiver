@@ -111,7 +111,7 @@
 
 // This define is set by selecting "Board: TTGO LoRa32-OLED" / "Board Revision: TTGO LoRa32 V2.1 (1.6.1)"
 // in the Arduino IDE:
-//#define ARDUINO_TTGO_LoRa32_V21new
+#define ARDUINO_TTGO_LoRa32_V21new
 
 // Heltec Wireless Stick
 // V2 -> SX1276
