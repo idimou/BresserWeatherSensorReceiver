@@ -224,6 +224,7 @@ const char* TZ_INFO    = "CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00";
 #endif
 
 const char sketch_id[] = "BresserWeatherSensorMQTTWifiMgr";
+bool decode_ok = false;
 
 // Map sensor IDs to Names
 SensorMap sensor_map[] = {
@@ -439,7 +440,7 @@ void wifimgr_setup(void)
     // read configuration from FS json
     Serial.println("mounting FS...");
 
-    if (SPIFFS.begin())
+    if (SPIFFS.begin(true))
     {
         log_i("mounted file system");
         if (SPIFFS.exists("/config.json"))
@@ -1112,7 +1113,7 @@ void loop()
         publishRadio();
     }
 
-    bool decode_ok = false;
+    
 #ifdef _DEBUG_MQTT_
     decode_ok = weatherSensor.genMessage(0 /* slot */, 0x01234567 /* ID */, 1 /* type */, 0 /* channel */);
 #else
@@ -1144,9 +1145,11 @@ void loop()
         lastMillis = millis();
         if (decode_ok)
             // publishWeatherdataViaMQTT(false);
+            Serial.print("Received data from weather station. Publishing data via HTTP");
 
             // String url = "http://iot.steth.gr:8080/api/v1/aGv9HohMwHHtT4UQxS4v/telemetry";
             publishWeatherdataViaHTTP(false,  "http://iot.steth.gr:8080/api/v1/aGv9HohMwHHtT4UQxS4v/telemetry");
+            decode_ok = false;
     }
 
     bool force_sleep = millis() > AWAKE_TIMEOUT;

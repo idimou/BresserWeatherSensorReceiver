@@ -20,7 +20,7 @@ class SX1273: public SX1272 {
       \brief Default constructor. Called from Arduino sketch when creating new LoRa instance.
       \param mod Instance of Module that will be used to communicate with the %LoRa chip.
     */
-    SX1273(Module* mod);
+    SX1273(Module* mod); // cppcheck-suppress noExplicitConstructor
 
     // basic methods
 
@@ -55,6 +55,13 @@ class SX1273: public SX1272 {
       \returns \ref status_codes
     */
     int16_t setDataRate(DataRate_t dr) override;
+    
+    /*!
+      \brief Check the data rate can be configured by this module.
+      \param dr Data rate struct. Interpretation depends on currently active modem (FSK or LoRa).
+      \returns \ref status_codes
+    */
+    int16_t checkDataRate(DataRate_t dr) override;
 
 #if !RADIOLIB_GODMODE
   private:

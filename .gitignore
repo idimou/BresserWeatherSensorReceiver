@@ -70,3 +70,9 @@ vendor
 # C++ stuff
 *.bin
 *.bin.dSYM
+
+
+# platformio stuff
+.pio
+.pioenvs
+.pio/

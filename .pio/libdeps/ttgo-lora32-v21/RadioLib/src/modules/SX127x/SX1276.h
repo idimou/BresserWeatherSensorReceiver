@@ -20,7 +20,7 @@ class SX1276: public SX1278 {
       \brief Default constructor. Called from Arduino sketch when creating new LoRa instance.
       \param mod Instance of Module that will be used to communicate with the %LoRa chip.
     */
-    SX1276(Module* mod);
+    SX1276(Module* mod); // cppcheck-suppress noExplicitConstructor
 
     // basic methods
 
@@ -61,7 +61,7 @@ class SX1276: public SX1278 {
       \param freq Carrier frequency to be set in MHz.
       \returns \ref status_codes
     */
-    int16_t setFrequency(float freq);
+    int16_t setFrequency(float freq) override;
 
 #if !RADIOLIB_GODMODE
   private:
@@ -73,13 +73,13 @@ class SX1276: public SX1278 {
   \class RFM95
   \brief Only exists as alias for SX1276, since there seems to be no difference between %RFM95 and %SX1276 modules.
 */
-RADIOLIB_TYPE_ALIAS(SX1276, RFM95);
+RADIOLIB_TYPE_ALIAS(SX1276, RFM95)
 
 /*!
   \class RFM96
   \brief Only exists as alias for SX1276, since there seems to be no difference between %RFM96 and %SX1276 modules.
 */
-RADIOLIB_TYPE_ALIAS(SX1276, RFM96);
+RADIOLIB_TYPE_ALIAS(SX1276, RFM96)
 
 #endif
 

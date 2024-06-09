@@ -18,6 +18,8 @@
 uint8_t WiFiManager::_lastconxresulttmp = WL_IDLE_STATUS;
 #endif
 
+
+
 /**
  * --------------------------------------------------------------------------------
  *  WiFiManagerParameter

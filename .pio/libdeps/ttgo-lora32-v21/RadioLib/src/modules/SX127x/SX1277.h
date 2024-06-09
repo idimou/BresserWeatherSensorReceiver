@@ -20,7 +20,7 @@ class SX1277: public SX1278 {
       \brief Default constructor. Called from Arduino sketch when creating new LoRa instance.
       \param mod Instance of Module that will be used to communicate with the %LoRa chip.
     */
-    SX1277(Module* mod);
+    SX1277(Module* mod); // cppcheck-suppress noExplicitConstructor
 
     // basic methods
 
@@ -61,7 +61,7 @@ class SX1277: public SX1278 {
       \param freq Carrier frequency to be set in MHz.
       \returns \ref status_codes
     */
-    int16_t setFrequency(float freq);
+    int16_t setFrequency(float freq) override;
 
     /*!
       \brief Sets %LoRa link spreading factor. Allowed values range from 6 to 9. Only available in %LoRa mode.
@@ -76,6 +76,13 @@ class SX1277: public SX1278 {
       \returns \ref status_codes
     */
     int16_t setDataRate(DataRate_t dr) override;
+    
+    /*!
+      \brief Check the data rate can be configured by this module.
+      \param dr Data rate struct. Interpretation depends on currently active modem (FSK or LoRa).
+      \returns \ref status_codes
+    */
+    int16_t checkDataRate(DataRate_t dr) override;
 
 #if !RADIOLIB_GODMODE
   private:
@@ -87,7 +94,7 @@ class SX1277: public SX1278 {
   \class RFM97
   \brief Only exists as alias for SX1277, since there seems to be no difference between %RFM97 and %SX1277 modules.
 */
-RADIOLIB_TYPE_ALIAS(SX1277, RFM97);
+RADIOLIB_TYPE_ALIAS(SX1277, RFM97)
 
 #endif
 

@@ -53,16 +53,7 @@
 
 // print debug info
 #if RADIOLIB_DEBUG
-  #define RADIOLIB_VALUE_TO_STRING(x) #x
-  #define RADIOLIB_VALUE(x) RADIOLIB_VALUE_TO_STRING(x)
-  #pragma message("\nRadioLib Debug Info\nVersion:  \"" \
-  RADIOLIB_VALUE(RADIOLIB_VERSION_MAJOR) "." \
-  RADIOLIB_VALUE(RADIOLIB_VERSION_MINOR) "." \
-  RADIOLIB_VALUE(RADIOLIB_VERSION_PATCH) "." \
-  RADIOLIB_VALUE(RADIOLIB_VERSION_EXTRA) "\"\n" \
-  "Platform: " RADIOLIB_VALUE(RADIOLIB_PLATFORM) "\n" \
-  "Compiled: " RADIOLIB_VALUE(__DATE__) " " RADIOLIB_VALUE(__TIME__) \
-  )
+  #pragma message(RADIOLIB_INFO)
 #endif
 
 // check unknown/unsupported platform
@@ -77,6 +68,9 @@
 
 #include "modules/CC1101/CC1101.h"
 #include "modules/LLCC68/LLCC68.h"
+#include "modules/LR11x0/LR1110.h"
+#include "modules/LR11x0/LR1120.h"
+#include "modules/LR11x0/LR1121.h"
 #include "modules/nRF24/nRF24.h"
 #include "modules/RF69/RF69.h"
 #include "modules/RFM2x/RFM22.h"
@@ -84,7 +78,8 @@
 #include "modules/Si443x/Si4430.h"
 #include "modules/Si443x/Si4431.h"
 #include "modules/Si443x/Si4432.h"
-#include "modules/SX1231/SX1231.h"
+#include "modules/SX123x/SX1231.h"
+#include "modules/SX123x/SX1233.h"
 #include "modules/SX126x/SX1261.h"
 #include "modules/SX126x/SX1262.h"
 #include "modules/SX126x/SX1268.h"

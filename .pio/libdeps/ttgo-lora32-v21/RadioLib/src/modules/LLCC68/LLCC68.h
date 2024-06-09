@@ -21,7 +21,7 @@ class LLCC68: public SX1262 {
       \brief Default constructor.
       \param mod Instance of Module that will be used to communicate with the radio.
     */
-    LLCC68(Module* mod);
+    LLCC68(Module* mod); // cppcheck-suppress noExplicitConstructor
 
     /*!
       \brief Initialization method for LoRa modem.
@@ -55,6 +55,20 @@ class LLCC68: public SX1262 {
       \returns \ref status_codes
     */
     int16_t setSpreadingFactor(uint8_t sf);
+
+    /*!
+      \brief Set data.
+      \param dr Data rate struct. Interpretation depends on currently active modem (FSK or LoRa).
+      \returns \ref status_codes
+    */
+    int16_t setDataRate(DataRate_t dr) override;
+    
+    /*!
+      \brief Check the data rate can be configured by this module.
+      \param dr Data rate struct. Interpretation depends on currently active modem (FSK or LoRa).
+      \returns \ref status_codes
+    */
+    int16_t checkDataRate(DataRate_t dr) override;
 
 #if !RADIOLIB_GODMODE
   private:
